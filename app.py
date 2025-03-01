@@ -86,20 +86,15 @@ def after_request(response):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return("opa")
-    
+    return "index"
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
-    return("opa")
+    return "explorar"
 
 @app.route("/mypage", methods=["GET", "POST"])
-def index():
-    return("opa")
-
-
-
-
+def mypage():
+    return "mypage"
 
 
 
