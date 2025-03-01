@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title%}
+Login
+{% endblock %}
+{% block main %}
+<div class= "login-container" style="display: grid;
+    place-items: center;">
+
+
+<form action="/login" method="post" class = "login-form">
+    <h1 style="text-align: center;">Login</h1>
+    <input type="text" name="username" class = "login-input"placeholder="Username" required>
+    <input  class = "login-input" type="password" name="password" placeholder="Password" required>
+    <button type="submit" class ="login-button">Log In</button>
+    <a href= "/register" class = "login-link"><h3>register</h3></a>
+</form>
+</div>
+{% endblock %}
