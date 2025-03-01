@@ -106,9 +106,9 @@ body {
 
 
 .button {
-    background-color: #4CAF50; /* Verde */
+    background-color: #007BFF; /* Azul */
     border: none;
-    color: white;
+    color: black;
     padding: 12px 24px;
     text-align: center;
     text-decoration: none;
@@ -120,16 +120,14 @@ body {
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
     transform: scale(1.05);
 }
 
 .button:active {
-    background-color: #3e8e41;
+    background-color: #003f7f;
     transform: scale(0.95);
 }
-
-
 
 
 
