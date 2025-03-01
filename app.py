@@ -81,12 +81,21 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     return("opa")
     
 
+@app.route("/explore", methods=["GET", "POST"])
+def explore():
+    return("opa")
 
+@app.route("/mypage", methods=["GET", "POST"])
+def index():
+    return("opa")
 
 
 
