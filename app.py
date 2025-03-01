@@ -68,7 +68,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite://ads.db")
+db = SQL("sqlite:///ads.db")
 
 
 @app.after_request
