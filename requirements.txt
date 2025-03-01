@@ -2,7 +2,4 @@ Flask
 Flask-Session
 Werkzeug
 cs50
-functools
-smtplib
-email
 gunicorn
