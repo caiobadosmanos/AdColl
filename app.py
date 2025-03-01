@@ -89,15 +89,27 @@ def after_request(response):
 def index():
     return redirect("/mypage")
 
+
+
 @app.route("/explore", methods=["GET", "POST"])
 @login_required
 def explore():
     return "explorar"
 
+
+
 @app.route("/mypage", methods=["GET", "POST"])
 @login_required
 def mypage():
-    return "mypage"
+    if request.method == "POST":
+
+        if "upload" in request.form:
+
+            id = request.form.get("upload")
+            return render_template("upload.html" ,id = id)
+        
+
+    return render_template("mypage.html")
 
 
 
