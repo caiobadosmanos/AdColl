@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/static/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+
+</head>
+
+<body>
+    <header>
+        
+
+    </header>
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+
+    
+</body>
+
+</html>
