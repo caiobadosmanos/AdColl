@@ -85,14 +85,17 @@ def after_request(response):
 
 
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def index():
-    return "index"
+    return redirect("/mypage")
 
 @app.route("/explore", methods=["GET", "POST"])
+@login_required
 def explore():
     return "explorar"
 
 @app.route("/mypage", methods=["GET", "POST"])
+@login_required
 def mypage():
     return "mypage"
 
