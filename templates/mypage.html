@@ -4,6 +4,19 @@ My Page
 {% endblock %}
 {% block main %}
 
-<form method ="post"><button class ="button">Upload an Ad</button></form>
+{% if ad %}
+
+    <h2 style="text-align: center; margin: 10px;">Seu Anuncio:</h2>
+    <h3>{{ad["descripiton"]}}</h3>
+
+{% endif %}
+{% if not ad %}
+
+    <p>Faça o upload do seu anuncio</p>
+    <form method ="post"><button class ="button">Upload an Ad</button></form>
+    <p>Pra cada anuncio que você ver Seu anuncio sera exibido 1 vez</p>
+    
+{% endif %}
+
 
 {% endblock %}
