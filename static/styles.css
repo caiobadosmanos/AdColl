@@ -1,0 +1,11 @@
+.flex{
+    font-display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color:rgb(32, 32, 32);
+}
+.bgcolor{
+
+    background-color: antiquewhite;
+
+}
