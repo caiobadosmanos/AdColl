@@ -115,6 +115,8 @@ body {
     transition: 0.3s;
     margin:10px;
     text-align: center;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .button:hover {
