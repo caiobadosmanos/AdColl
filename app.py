@@ -29,6 +29,8 @@ def enviar_email(corpo_email):
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
     print('Email enviado')
+
+
 def EmailToClient(corpo_email, client):  
     
 
@@ -80,7 +82,6 @@ def after_request(response):
     return response
 
 @app.route("/", methods=["GET", "POST"])
-@login_required
 def index():
     return("opa")
     
