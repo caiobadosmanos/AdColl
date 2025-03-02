@@ -10,7 +10,10 @@ My Page
         <h2 style="text-align: center; margin: 10px;">Seu Anuncio:</h2>
         <h3>{{ad["description"]}}</h3>
         <a href="{{ad['link']}}"><img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio"></a>
-        <h3>Seu Anuncio será Exibido: {{ad["points"]}} vezes</h3>
+        <h4>Seu Anuncio será Exibido: {{ad["points"]}} vezes</h4>
+        <form>
+            <button value ="delete" class = "dbutton">DELETE 🗑️</button>
+        </form>
     </div>
 
 

@@ -122,3 +122,20 @@ body {
 .button:hover {
     background-color: #0056b3;
 }
+.dbutton{
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin:10px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dbutton:hover {
+    background-color: #b30000;
+}
