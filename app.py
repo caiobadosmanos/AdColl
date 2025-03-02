@@ -117,7 +117,7 @@ def mypage():
 
         if "image" in request.files:
 
-            descripition = request.form.get("descipition")
+            descripition = request.form.get("descripition")
 
             link = request.form.get("link")
 
