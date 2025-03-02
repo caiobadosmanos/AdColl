@@ -140,8 +140,8 @@ def mypage():
             # Salva o arquivo na pasta `static/imgs/`
             file.save(os.path.join(UPLOAD_FOLDER, new_filename))
 
-            db.execute("INSERT INTO ads (user_id, points, img, description, link) VALUES (?, ?, ?, ?, ?)", 
-            (session["user_id"], 0, new_filename, description, link))
+            db.execute("INSERT INTO ads (user_id, points, img, description, link) VALUES (?, ?, ?, ?, ?)", session["user_id"], 0, new_filename, description, link)
+
 
 
 
