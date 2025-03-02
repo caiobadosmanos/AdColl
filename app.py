@@ -115,6 +115,9 @@ def explore():
 def mypage():
     if request.method == "POST":
 
+        if "delete" in request.form:
+            db.execute("DELETE FROM ads WHERE user_id = ?", session["user_id"])
+
         if "image" in request.files:
 
             description = request.form.get("descripition")
