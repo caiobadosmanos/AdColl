@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
 {% block title%}
-Explore
+Upload
 {% endblock %}
 {% block main %}
 
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="image">
+    <button type="submit">Enviar</button>
+</form>
 
 
 {% endblock %}

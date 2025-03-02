@@ -105,8 +105,8 @@ def mypage():
 
         if "upload" in request.form:
 
-            id = request.form.get("upload")
-            return render_template("upload.html" ,id = id)
+            print(request.form.get("upload"))
+            return render_template("upload.html")
         
     id = session["user_id"]
     ad = db.execute("SELECT * FROM ads WHERE user_id = ?",id)
