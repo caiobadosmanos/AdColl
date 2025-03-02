@@ -116,7 +116,19 @@ def mypage():
     if request.method == "POST":
 
         if "delete" in request.form:
+            name =db.execute("SELECT img FROM ads WHERE user_id = ?", session["user_id"])
+
             db.execute("DELETE FROM ads WHERE user_id = ?", session["user_id"])
+            
+            file_path = os.path.join('static', 'imgs', name)  # Substitua 'x' pelo nome do arquivo que você quer deletar
+
+            # Verifique se o arquivo existe e, se existir, delete-o
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                print(f"Arquivo {file_path} deletado com sucesso.")
+            else:
+                print(f"O arquivo {file_path} não foi encontrado.")
+            
             return redirect("/")
 
         if "image" in request.files:
