@@ -11,31 +11,49 @@ Explore
 <button id="notifyButton">Clique para receber notificação</button>
 
 <script>
-    // Função para solicitar permissão e mostrar a notificação
-    function requestNotificationPermission() {
+    // Função para verificar e solicitar permissão de notificação
+    function checkNotificationPermission() {
         if ("Notification" in window) {
-            Notification.requestPermission().then(function(permission) {
-                if (permission === "granted") {
-                    var notification = new Notification("Pop-up Persistente!", {
-                        body: "Este é um pop-up que permanecerá enquanto o navegador estiver aberto.",
-                        icon: "https://via.placeholder.com/150"
-                    });
-
-                    // Ação ao clicar na notificação
-                    notification.onclick = function() {
-                        window.focus();
-                    };
-                } else {
-                    alert("Você precisa permitir notificações para ver o pop-up.");
-                }
-            });
+            if (Notification.permission === "granted") {
+                // Se a permissão foi concedida, exibe a notificação
+                showNotification();
+            } else if (Notification.permission === "default") {
+                // Se a permissão ainda não foi solicitada, solicita
+                requestNotificationPermission();
+            } else {
+                alert("Notificações não foram permitidas.");
+            }
         } else {
             alert("Seu navegador não suporta notificações.");
         }
     }
 
-    // Adiciona o ouvinte de evento para o clique do botão
-    document.getElementById("notifyButton").onclick = requestNotificationPermission;
+    // Função para solicitar permissão para exibir notificações
+    function requestNotificationPermission() {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+                showNotification(); // Exibe a notificação se a permissão for concedida
+            } else {
+                alert("Você precisa permitir notificações para ver o pop-up.");
+            }
+        });
+    }
+
+    // Função para criar e exibir a notificação
+    function showNotification() {
+        var notification = new Notification("Pop-up Persistente!", {
+            body: "Este é um pop-up que permanecerá enquanto o navegador estiver aberto.",
+            icon: "https://via.placeholder.com/150"
+        });
+
+        // Quando a notificação for clicada, foca na página
+        notification.onclick = function() {
+            window.focus();
+        };
+    }
+
+    // Adiciona o ouvinte de evento para o clique no botão
+    document.getElementById("notifyButton").onclick = checkNotificationPermission;
 </script>
 
 {% endblock %}
