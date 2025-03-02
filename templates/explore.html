@@ -5,57 +5,32 @@ Explore
 {% block main %}
 
 
-<style>
-    /* Estilo do modal */
-    .modal {
-        display: block; /* O modal estará sempre visível */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Fundo transparente */
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-    .modal-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        position: relative;
-        width: 300px;
-        text-align: center;
-    }
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    }
-</style>
-
-
-
-
-<div id="popup" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePopup()">X</span>
-        <h2>Este é o seu pop-up!</h2>
-        <p>O pop-up ficará até você fechar com o "X".</p>
-    </div>
-</div>
-
+<h1>Pop-up persistente com notificação!</h1>
 <script>
-    // Função para fechar o pop-up
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
-        localStorage.setItem("popupClosed", "true"); // Guarda no localStorage
-    }
+    // Verifica se o navegador suporta notificações
+    if ("Notification" in window) {
+        // Solicita permissão para mostrar notificações
+        Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+                // Cria e exibe a notificação
+                var notification = new Notification("Pop-up Persistente!", {
+                    body: "Este é um pop-up que permanecerá enquanto o navegador estiver aberto.",
+                    icon: "https://via.placeholder.com/150"
+                });
 
-    // Verifica se o pop-up já foi fechado no passado
-    if (localStorage.getItem("popupClosed") === "true") {
-        document.getElementById("popup").style.display = "none";
+                // Se a pessoa clicar na notificação, ela pode ser fechada
+                notification.onclick = function() {
+                    window.focus(); // Foca na janela do site
+                };
+
+                // A notificação desaparece automaticamente após algum tempo, mas o site pode continuar ativo.
+                // Você pode também manipular o tempo de vida da notificação, caso queira.
+            } else {
+                alert("Você precisa permitir notificações para ver o pop-up.");
+            }
+        });
+    } else {
+        alert("Seu navegador não suporta notificações.");
     }
 </script>
 
