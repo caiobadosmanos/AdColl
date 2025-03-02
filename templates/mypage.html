@@ -1,36 +1,106 @@
 {% extends "layout.html" %}
-{% block title%}
+
+{% block title %}
 My Page
 {% endblock %}
+
 {% block main %}
 
 {% if ad %}
-
-    <div style="text-align: center;">
-        <h2 style="text-align: center; margin: 10px;">Seu Anuncio:</h2>
+    <div class="ad-container">
+        <h2 class="title">Seu Anuncio:</h2>
         <h3>{{ad["description"]}}</h3>
-        <a href="{{ad['link']}}"><img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio"></a>
+        <!-- Link agora envolto corretamente -->
+        <a href="{{ad['link']}}" target="_blank">
+            <img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio" class="ad-image">
+        </a>
         <h4>Seu Anuncio será Exibido: {{ad["points"]}} vezes</h4>
         <form method="post">
-            <button name ="delete"value ="delete" class = "dbutton">DELETE 🗑️</button>
+            <button name="delete" value="delete" class="delete-button">DELETE 🗑️</button>
         </form>
     </div>
-
-
 {% endif %}
-{% if not ad %}
 
-    <div style="text-align: center;">
-        <p>Faça o upload do seu anuncio</p>
+{% if not ad %}
+    <div class="upload-container">
+        <p class="upload-info">Faça o upload do seu anúncio</p>
         <form method="post">
             <input type="hidden" name="upload" value="1">
-            <button class="button">Upload an Ad</button>
+            <button class="upload-button">Upload an Ad</button>
         </form>
         
-        <p>Pra cada anuncio que você ver Seu anuncio sera exibido 1 vez</p>
+        <p class="upload-info">Pra cada anúncio que você ver, Seu anúncio será exibido 1 vez</p>
     </div>
-
 {% endif %}
 
-
 {% endblock %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+    }
+
+    .ad-container, .upload-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    .title {
+        color: #1e3a8a;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        color: #3b82f6;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    h4 {
+        color: #2563eb;
+        font-size: 18px;
+    }
+
+    .ad-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+        cursor: pointer;
+    }
+
+    .upload-info {
+        color: #1e3a8a;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .button, .upload-button, .delete-button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover, .upload-button:hover, .delete-button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .button:active, .upload-button:active, .delete-button:active {
+        background-color: #1e40af;
+    }
+</style>
