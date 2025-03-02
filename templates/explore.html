@@ -1,37 +1,41 @@
 {% extends "layout.html" %}
-{% block title%}
+
+{% block title %}
 Explore
 {% endblock %}
+
 {% block main %}
 
-
 <h1>Pop-up persistente com notificação!</h1>
+
+<button id="notifyButton">Clique para receber notificação</button>
+
 <script>
-    // Verifica se o navegador suporta notificações
-    if ("Notification" in window) {
-        // Solicita permissão para mostrar notificações
-        Notification.requestPermission().then(function(permission) {
-            if (permission === "granted") {
-                // Cria e exibe a notificação
-                var notification = new Notification("Pop-up Persistente!", {
-                    body: "Este é um pop-up que permanecerá enquanto o navegador estiver aberto.",
-                    icon: "https://via.placeholder.com/150"
-                });
+    // Função para solicitar permissão e mostrar a notificação
+    function requestNotificationPermission() {
+        if ("Notification" in window) {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === "granted") {
+                    var notification = new Notification("Pop-up Persistente!", {
+                        body: "Este é um pop-up que permanecerá enquanto o navegador estiver aberto.",
+                        icon: "https://via.placeholder.com/150"
+                    });
 
-                // Se a pessoa clicar na notificação, ela pode ser fechada
-                notification.onclick = function() {
-                    window.focus(); // Foca na janela do site
-                };
-
-                // A notificação desaparece automaticamente após algum tempo, mas o site pode continuar ativo.
-                // Você pode também manipular o tempo de vida da notificação, caso queira.
-            } else {
-                alert("Você precisa permitir notificações para ver o pop-up.");
-            }
-        });
-    } else {
-        alert("Seu navegador não suporta notificações.");
+                    // Ação ao clicar na notificação
+                    notification.onclick = function() {
+                        window.focus();
+                    };
+                } else {
+                    alert("Você precisa permitir notificações para ver o pop-up.");
+                }
+            });
+        } else {
+            alert("Seu navegador não suporta notificações.");
+        }
     }
+
+    // Adiciona o ouvinte de evento para o clique do botão
+    document.getElementById("notifyButton").onclick = requestNotificationPermission;
 </script>
 
 {% endblock %}
