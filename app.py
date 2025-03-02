@@ -145,7 +145,13 @@ def mypage():
 
 
 
-            return f"Arquivo salvo como {new_filename}!"
+            id = session["user_id"]
+            ad = db.execute("SELECT * FROM ads WHERE user_id = ?",id)
+            if ad:
+                ad = ad[0]
+            else:
+                ad = None
+            return render_template("mypage.html",ad = ad)
 
 
         if "upload" in request.form:
@@ -160,6 +166,17 @@ def mypage():
     else:
         ad = None
     return render_template("mypage.html",ad = ad)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
