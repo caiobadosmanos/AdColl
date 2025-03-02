@@ -117,6 +117,7 @@ def mypage():
 
         if "delete" in request.form:
             db.execute("DELETE FROM ads WHERE user_id = ?", session["user_id"])
+            return redirect("/")
 
         if "image" in request.files:
 
