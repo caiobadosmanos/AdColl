@@ -118,6 +118,8 @@ def mypage():
         if "delete" in request.form:
             name =db.execute("SELECT img FROM ads WHERE user_id = ?", session["user_id"])
 
+            name = name[0]["img"]
+
             db.execute("DELETE FROM ads WHERE user_id = ?", session["user_id"])
             
             file_path = os.path.join('static', 'imgs', name)  # Substitua 'x' pelo nome do arquivo que você quer deletar
