@@ -8,7 +8,9 @@ My Page
 
     <div style="text-align: center;">
         <h2 style="text-align: center; margin: 10px;">Seu Anuncio:</h2>
-        <h3>{{ad["descripiton"]}}</h3>
+        <h3>{{ad["description"]}}</h3>
+        <a href="{{ad['link']}}"><img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio"></a>
+        <h3>Seu Anuncio será Exibido: {{ad["points"]}} vezes</h3>
     </div>
 
 
