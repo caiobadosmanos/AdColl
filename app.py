@@ -117,15 +117,15 @@ def mypage():
 
         if "image" in request.files:
 
-            descripition = request.form.get("descripition")
+            description = request.form.get("descripition")
 
             link = request.form.get("link")
 
             file = request.files["image"]
 
-            print(link, descripition)
+            print(link, description)
 
-            if not descripition or not link:
+            if not description or not link:
                 return("<h1>preencha o relatório corretamente</h1>")
 
             if file.filename == "":
@@ -140,8 +140,9 @@ def mypage():
             # Salva o arquivo na pasta `static/imgs/`
             file.save(os.path.join(UPLOAD_FOLDER, new_filename))
 
-            db.execute("INSERT INTO nome_da_tabela (user_id, points, img, description, link) VALUES (?, ?, ?, ?, ?)", 
-            (session["user_id"], 0, new_filename, descripition, link))
+            db.execute("INSERT INTO ads (user_id, points, img, description, link) VALUES (?, ?, ?, ?, ?)", 
+            (session["user_id"], 0, new_filename, description, link))
+
 
 
             return f"Arquivo salvo como {new_filename}!"
