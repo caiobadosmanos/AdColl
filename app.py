@@ -103,6 +103,10 @@ def explore():
 def mypage():
     if request.method == "POST":
 
+        if "file" in request.form:
+            file = request.form.get("file")
+
+
         if "upload" in request.form:
 
             print(request.form.get("upload"))
