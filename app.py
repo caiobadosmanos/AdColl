@@ -140,7 +140,7 @@ def mypage():
             # Salva o arquivo na pasta `static/imgs/`
             file.save(os.path.join(UPLOAD_FOLDER, new_filename))
 
-            db.execute("INSERT INTO nome_da_tabela (user_id,points,img,descripition,link ) VALUES (?, ?)", (session["user_id"], 0,new_filename,descripition,link))
+            db.execute("INSERT INTO nome_da_tabela (user_id,points,img,descripition,link ) VALUES (?, ?,?,?,?)", (session["user_id"], 0,new_filename,descripition,link))
 
 
             return f"Arquivo salvo como {new_filename}!"
