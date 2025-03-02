@@ -106,7 +106,7 @@ def index():
 @app.route("/explore", methods=["GET", "POST"])
 @login_required
 def explore():
-    return "explorar"
+    return render_template("explore.html")
 
 
 
