@@ -5,7 +5,12 @@ Upload
 {% block main %}
 
 <form method="post" enctype="multipart/form-data">
+    <h3>Insira a Imagem do Seu Anuncio</h3>
     <input type="file" name="image">
+    <h3>Insira a descrição do Seu Anuncio</h3>
+    <input type="text" name="descripition" placeholder="descrição">
+    <h3>Insira o Link que Levará o usuário Para sua pagina</h3>
+    <input type="text" name = "link" placeholder="link">
     <button type="submit">Enviar</button>
 </form>
 

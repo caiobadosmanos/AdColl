@@ -8,9 +8,21 @@ from flask import Flask, jsonify, render_template
 
 from functools import wraps
 
+import os
+
 
 import smtplib
 import email.message
+
+UPLOAD_FOLDER = "static/imgs"  # Define a pasta correta
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Garante que a pasta existe
+
+def get_next_filename(extension):
+    """Encontra o próximo número disponível para salvar o arquivo"""
+    existing_files = [int(f.split('.')[0]) for f in os.listdir(UPLOAD_FOLDER) if f.split('.')[0].isdigit()]
+    next_number = max(existing_files) + 1 if existing_files else 1  # Se não houver arquivos, começa em 1
+    return f"{next_number}{extension}"
+
 
 def enviar_email(corpo_email):  
     
@@ -103,8 +115,35 @@ def explore():
 def mypage():
     if request.method == "POST":
 
-        if "file" in request.form:
-            file = request.form.get("file")
+        if "image" in request.files:
+
+            descripition = request.form.get("descipition")
+
+            link = request.form.get("link")
+
+            file = request.files["image"]
+
+            print(link, descripition)
+
+            if not descripition or not link:
+                return("<h1>preencha o relatório corretamente</h1>")
+
+            if file.filename == "":
+                return "Nenhum arquivo selecionado."
+
+            # Obtém a extensão do arquivo (.jpg, .png, etc.)
+            ext = os.path.splitext(file.filename)[1]
+
+            # Gera o próximo nome disponível
+            new_filename = get_next_filename(ext)
+
+            # Salva o arquivo na pasta `static/imgs/`
+            file.save(os.path.join(UPLOAD_FOLDER, new_filename))
+
+            db.execute("INSERT INTO nome_da_tabela (user_id,points,img,descripition,link ) VALUES (?, ?)", (session["user_id"], 0,new_filename,descripition,link))
+
+
+            return f"Arquivo salvo como {new_filename}!"
 
 
         if "upload" in request.form:
