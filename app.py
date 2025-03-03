@@ -106,7 +106,8 @@ def index():
 @app.route("/explore", methods=["GET", "POST"])
 @login_required
 def explore():
-    return render_template("explore.html")
+    ad= db.execute("SELECT * FROM ads ORDER BY points DESC LIMIT 1")
+    return render_template("explore.html",ad =ad)
 
 
 
