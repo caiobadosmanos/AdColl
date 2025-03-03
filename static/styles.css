@@ -4,7 +4,10 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-
+a{
+    color:black;
+    text-decoration: none;
+}
 
 
 

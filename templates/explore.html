@@ -5,24 +5,39 @@ Explore
 {% endblock %}
 
 {% block main %}
-  <h1>Exploração de Notificações</h1>
-  <script>
-    // Aguardando o carregamento completo da página
-    document.addEventListener("DOMContentLoaded", function() {
-      // Verifica se o navegador tem suporte para notificações
-      if ("Notification" in window) {
-        // Solicita permissão para exibir notificações
-        Notification.requestPermission().then(function(permission) {
-          if (permission === "granted") {
-            // Exibe a notificação
-            new Notification("Esta é uma notificação pop-up!");
-          } else {
-            console.log("Permissão de notificação negada");
-          }
-        });
-      } else {
-        console.log("Este navegador não suporta notificações.");
-      }
-    });
-  </script>
+
+
+
+       
+    <a href="{{ad['link']}}" target="_blank">
+
+        <img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio" class="ad-image" id ="img">
+    
+    </a>
+
+    <h3 style="display: none;">{{ad["description"]}}</h3>
+
+    <form method = "post">
+        <input type ="hiden" name="proximo" value="24">
+        <button class="button">Proximo</button>
+    </form>
+
+    <style>
+
+        #img{
+            min-width:50vw;
+            max-width:90vw;
+            
+            margin:10px;
+
+
+        }
+        a{
+            justify-content: space-between;
+        }
+
+    </style>
+
+
+
 {% endblock %}
