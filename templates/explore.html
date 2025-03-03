@@ -5,21 +5,21 @@ Explore
 {% endblock %}
 
 {% block main %}
+  <h1>Exploração de Notificações</h1>
   <script>
+    // Aguardando o carregamento completo da página
     document.addEventListener("DOMContentLoaded", function() {
-      // Verifica se o navegador permite notificações
+      // Verifica se o navegador tem suporte para notificações
       if ("Notification" in window) {
-        if (Notification.permission === "granted") {
-          // Se a permissão for concedida, exibe a notificação
-          new Notification("Esta é uma notificação pop-up!");
-        } else if (Notification.permission !== "denied") {
-          // Se a permissão não foi negada, solicita a permissão
-          Notification.requestPermission().then(function(permission) {
-            if (permission === "granted") {
-              new Notification("Esta é uma notificação pop-up!");
-            }
-          });
-        }
+        // Solicita permissão para exibir notificações
+        Notification.requestPermission().then(function(permission) {
+          if (permission === "granted") {
+            // Exibe a notificação
+            new Notification("Esta é uma notificação pop-up!");
+          } else {
+            console.log("Permissão de notificação negada");
+          }
+        });
       } else {
         console.log("Este navegador não suporta notificações.");
       }
