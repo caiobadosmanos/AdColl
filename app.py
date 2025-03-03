@@ -106,6 +106,15 @@ def index():
 @app.route("/explore", methods=["GET", "POST"])
 @login_required
 def explore():
+    if request.method == "post":
+        db.execute("UPDATE ads SET points = points-1 WHERE id = (SELECT id FROM ads ORDER BY points DESC LIMIT 1)")
+        db.execute("UPDATE ads SET points = points+1 WHERE user_id = ?", session["user_id"])
+        ad= db.execute("SELECT * FROM ads ORDER BY points DESC LIMIT 1")
+        ad= ad[0]
+        return render_template("explore.html",ad =ad)
+
+        
+
     ad= db.execute("SELECT * FROM ads ORDER BY points DESC LIMIT 1")
     ad= ad[0]
     return render_template("explore.html",ad =ad)
