@@ -106,7 +106,7 @@ def index():
 @app.route("/explore", methods=["GET", "POST"])
 @login_required
 def explore():
-    if request.method == "post":
+    if request.method == "POST":
         points =db.execute("SELECT points FROM ads")
         for point in points:
             print(point["points"])
