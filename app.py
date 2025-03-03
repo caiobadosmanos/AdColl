@@ -107,6 +107,7 @@ def index():
 @login_required
 def explore():
     ad= db.execute("SELECT * FROM ads ORDER BY points DESC LIMIT 1")
+    ad= ad[0]
     return render_template("explore.html",ad =ad)
 
 
