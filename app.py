@@ -107,6 +107,9 @@ def index():
 @login_required
 def explore():
     if request.method == "post":
+        points =db.execute("SELECT points FROM ads")
+        for point in points:
+            print(point["points"])
         db.execute("UPDATE ads SET points = points-1 WHERE id = (SELECT id FROM ads ORDER BY points DESC LIMIT 1)")
         db.execute("UPDATE ads SET points = points+1 WHERE user_id = ?", session["user_id"])
         ad= db.execute("SELECT * FROM ads ORDER BY points DESC LIMIT 1")
