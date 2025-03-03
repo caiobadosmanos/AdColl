@@ -6,20 +6,23 @@ Explore
 
 {% block main %}
   <script>
-    // Função para mostrar uma notificação pop-up
-    function showNotification() {
-      if (Notification.permission === "granted") {
-        new Notification("Esta é uma notificação pop-up!");
-      } else if (Notification.permission !== "denied") {
-        Notification.requestPermission().then(function(permission) {
-          if (permission === "granted") {
-            new Notification("Esta é uma notificação pop-up!");
-          }
-        });
+    document.addEventListener("DOMContentLoaded", function() {
+      // Verifica se o navegador permite notificações
+      if ("Notification" in window) {
+        if (Notification.permission === "granted") {
+          // Se a permissão for concedida, exibe a notificação
+          new Notification("Esta é uma notificação pop-up!");
+        } else if (Notification.permission !== "denied") {
+          // Se a permissão não foi negada, solicita a permissão
+          Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+              new Notification("Esta é uma notificação pop-up!");
+            }
+          });
+        }
+      } else {
+        console.log("Este navegador não suporta notificações.");
       }
-    }
-
-    // Chama a função para mostrar a notificação
-    showNotification();
+    });
   </script>
 {% endblock %}
