@@ -4,15 +4,61 @@ Upload
 {% endblock %}
 {% block main %}
 
-<form method="post" enctype="multipart/form-data">
-    <h3>Insira a Imagem do Seu Anuncio</h3>
-    <input type="file" name="image">
-    <h3>Insira a descrição do Seu Anuncio</h3>
-    <input type="text" name="descripition" placeholder="descrição">
-    <h3>Insira o Link que Levará o usuário Para sua pagina</h3>
-    <input type="text" name = "link" placeholder="link">
-    <button type="submit">Enviar</button>
+<form method="post" enctype="multipart/form-data" class="ad-form">
+    <h3 class="form-title">Insira a Imagem do Seu Anuncio</h3>
+    <input type="file" name="image" class="form-input file-input">
+    <h3 class="form-title">Insira a descrição do Seu Anuncio</h3>
+    <input type="text" name="descripition" placeholder="descrição" class="form-input">
+    <h3 class="form-title">Insira o Link que Levará o usuário Para sua pagina</h3>
+    <input type="text" name="link" placeholder="link" class="form-input">
+    <button type="submit" class="form-button">Enviar</button>
 </form>
+<style>
+    .ad-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.form-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.file-input {
+    padding: 8px;
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #45a049;
+}
+
+</style>
 
 {% endblock %}
