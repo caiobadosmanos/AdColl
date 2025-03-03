@@ -13,7 +13,7 @@ My Page
         <h3>{{ad["description"]}}</h3>
         <!-- Link agora envolto corretamente -->
         <a href="{{ad['link']}}" target="_blank">
-            <img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio" class="ad-image">
+            <img src="{{ url_for('static', filename='imgs/' + ad['img']) }}" alt="Imagem do anúncio" class="ad-image" style="max-width: 90vw;">
         </a>
         <h4>Seu Anuncio será Exibido: {{ad["points"]}} vezes</h4>
         <form method="post">
